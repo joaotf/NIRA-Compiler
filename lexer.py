@@ -26,7 +26,9 @@ class Lexer(object):
         'RKEY',
         'LKEY',
         'ASPAS',
-        'COMENTARIO'
+        'COMENTARIO',
+        'RCOLCHETE',
+        'LCOLCHETE'
     ]+list(reservadas.values())
 
     # Regular expression rules for simple tokens
@@ -37,6 +39,8 @@ class Lexer(object):
     t_DIVIDE  = r'/'
     t_LPAREN  = r'\('
     t_RPAREN  = r'\)'
+    t_RCOLCHETE = r'\]'
+    t_LCOLCHETE = r'\['
     t_ATRIBUTION = r'\='
     t_EQUALITY = r'(==)'
     t_RKEY = r'\}'
