@@ -1,11 +1,16 @@
-import sys,os
+import sys
+import os
 import ply.lex as lex
 import ply.yacc as yacc
-import lexer 
-import parser as p
+
+import lexer
+import parserS
+
+
 
 if __name__ == '__main__':
     lexer.build()
+
     try:
         if (len(sys.argv) > 1):
             script = sys.argv[1]
@@ -36,7 +41,7 @@ if __name__ == '__main__':
             scriptdata = scriptfile.read()
 
             print(chr(27)+"[0;36m"+"Iniciando a análise sintática"+chr(27)+"[0m")
-            p.parser.parse(scriptdata, tracking=False)
+            parserS.parser.parse(scriptdata, tracking=False)
             print(chr(27)+"[0;36m"+"Terminando a análise sintática"+chr(27)+"[0m")
         else:
             print(chr(27)+"[0;31m"+"Passe o arquivo Python como parâmetro")

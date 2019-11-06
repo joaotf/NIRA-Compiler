@@ -1,8 +1,8 @@
 import ply.yacc as yacc
 import ply.lex as lexer
 from lexer import tokens
-
-structure = []
+import sys
+import os
 
 precedence = (
     ('left','LPAREN','RPAREN'),
@@ -199,7 +199,7 @@ def p_empty(p):
     'empty :'
     pass
 
-    # Error rule for syntax errors
+
 def p_error(p):
     if 1:
         if p is not None:
@@ -211,6 +211,4 @@ def p_error(p):
     else:
         raise Exception('syntax', 'error')
 
-    # Build the parser
-parser=yacc.yacc(start='program')
-
+parser = yacc.yacc(start='program')

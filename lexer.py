@@ -1,8 +1,6 @@
 import ply.lex as lex
 import sys
 
-result = []
-
 reservadas = {
         'if': 'IF',
         'else': 'ELSE',
