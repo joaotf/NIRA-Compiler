@@ -1,3 +1,11 @@
 if(x == 5){
-    print("Oi")
+    print("Oi");
+}else{
+    print("Olá");
 }
+
+
+for(x=0;x>10;x++){
+    print("Printando infinitamente");
+}
+
