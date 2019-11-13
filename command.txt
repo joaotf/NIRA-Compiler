@@ -4,8 +4,10 @@ if(x == 5){
     print("Olá");
 }
 
-
 for(x=0;x>10;x++){
     print("Printando infinitamente");
 }
 
+do{
+    print("SDIOJFOIDSJFPOD");
+}while(x > 10);

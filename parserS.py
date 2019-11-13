@@ -58,6 +58,7 @@ def p_statement(p):
 				 | selection_stmt
 				 | iteration_stmt
 				 | print_stmt
+				 | read_stmt
 	'''
 	pass
 
@@ -85,7 +86,9 @@ def p_iteration_stmt_2(p):
 	pass
 
 def p_iteration_stmt_3(p):
-	'iteration_stmt : DO LBRACE statement SEMI RBRACE WHILE LPAREN expression RPAREN'
+	'''iteration_stmt : DO LBRACE statement SEMI RBRACE WHILE LPAREN expression RPAREN SEMI
+					  | DO LBRACE print_stmt RBRACE WHILE LPAREN expression RPAREN SEMI
+	'''
 	pass
 
 def p_expression(p):
