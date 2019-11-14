@@ -33,7 +33,7 @@ tokens = [
         'RBRACE',
         'LBRACE',
         'ASPAS', 
-        'COMENTARIO',
+        'COMMENT',
         'RCOLCHETE',
         'LCOLCHETE',
         'STRINGS',
@@ -65,7 +65,6 @@ t_EQUALITY = r'(==)'
 t_RBRACE = r'\}'
 t_LBRACE = r'\{'
 t_ASPAS = r'"'
-t_COMENTARIO = r'\#.*'
 t_TIMESX = r'(\*\*)'
 t_LOG = r'(&&)'
 t_OU_LOGICO = r'(\|\|)'
@@ -100,11 +99,7 @@ def t_COMMENT(t):
     r'\#.*'
 
 t_ignore  = ' \t'
-    
-def t_error(t):
-    print(chr(27)+"[1;31m"+"\t ERROR: Illegal character"+chr(27)+"[0m")
-    print("\t\tLine: "+str(t.lexer.lineno)+"\t=> " + t.value[0])
-    t.lexer.skip(1)
+
 
 def build(**kwargs):
     lexer = lex.lex(**kwargs)

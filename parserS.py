@@ -25,18 +25,26 @@ def p_declaration_list(p):
 def p_declaration(p):
     '''declaration : var_declaration
 				   | print_stmt
+				   | read_stmt
 				   | selection_stmt
 			       | iteration_stmt
+				   | expression
 	'''
     pass
 
 def p_print_stmt(p):
-	'''print_stmt   : PRINT LPAREN STRING RPAREN SEMI 
-				    | PRINT LPAREN IDENTIFIER RPAREN SEMI 
-				    | PRINT LPAREN NUMBER RPAREN SEMI 
-				    | PRINT LPAREN boolean RPAREN SEMI 
-                    | PRINT LPAREN expression RPAREN SEMI 
-                    | PRINT LPAREN RPAREN SEMI 
+	'''print_stmt   : PRINT LPAREN STRING RPAREN SEMI declaration
+					| PRINT LPAREN STRING RPAREN SEMI 
+				    | PRINT LPAREN IDENTIFIER RPAREN SEMI declaration
+					| PRINT LPAREN IDENTIFIER RPAREN SEMI 
+				    | PRINT LPAREN NUMBER RPAREN SEMI declaration
+					| PRINT LPAREN NUMBER RPAREN SEMI 
+				    | PRINT LPAREN boolean RPAREN SEMI declaration
+					| PRINT LPAREN boolean RPAREN SEMI 
+                    | PRINT LPAREN expression RPAREN SEMI declaration
+					| PRINT LPAREN expression RPAREN SEMI 
+                    | PRINT LPAREN RPAREN SEMI declaration
+					| PRINT LPAREN RPAREN SEMI 
 	'''
 	pass
 
@@ -91,18 +99,22 @@ def p_iteration_stmt_3(p):
 	'''
 	pass
 
+def p_read_stmt(p):
+	'''
+		read_stmt : READ LPAREN STRING RPAREN SEMI declaration
+				  | READ LPAREN STRING RPAREN SEMI 
+	'''
+	pass
+
 def p_expression(p):
-	'''expression : var EQUALITY expression
+	'''expression : IDENTIFIER EQUALITY expression
 				  | simple_expression
-				  | var EQUALITY IDENTIFIER
+				  | IDENTIFIER EQUALITY IDENTIFIER
 			      | expression LOG expression
 				  | expression OU_LOGICO expression
 	'''
 	pass
 
-def p_var(p):
-	'var : IDENTIFIER'
-	pass
 
 def p_simple_expression(p):
 	'''simple_expression : additive_expression relop additive_expression
@@ -148,7 +160,7 @@ def p_mulop(p):
 
 def p_factor(p):
 	'''factor : LPAREN expression RPAREN
-			  | var
+			  | IDENTIFIER
 			  | NUMBER
 			  | boolean
 			  | IDENTIFIER LPAREN args RPAREN
@@ -195,6 +207,8 @@ def p_expressions_all(p):
         p[0] = p[1] and p[3]
     elif(p[2] == '||'):
         p[0] = p[1] or p[3]
+	
+    return p[0]
     
 
 
@@ -207,7 +221,7 @@ def p_error(p):
     if 1:
         if p is not None:
             print(chr(27)+"[1;31m"+"\t ERROR: Syntax error - Unexpected token" + chr(27)+"[0m")
-            print("\t\tLine: "+str(p.lexer.lineno)+"\t=> "+str(p.value))
+            print("\t\tLine: "+str((p.lexer.lineno))+"\t=> "+str(p.value))
         else:
             print(chr(27)+"[1;31m"+"\t ERROR: Syntax error"+chr(27)+"[0m")
             print("\t\tLine:  "+str(lexer.lexer.lineno))
