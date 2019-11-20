@@ -3,8 +3,8 @@ import os
 import ply.lex as lex
 import ply.yacc as yacc
 
-import lexer
-import parserS
+import NIRA_Lexer as lexer
+import NIRA_Parser as parserS
 
 
 

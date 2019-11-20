@@ -20,7 +20,8 @@ reservadas = {
 
 tokens = [
         'IDENTIFIER',
-        'NUMBER',
+        'INTEGER',
+        'FLOAT',
         'PLUS',
         'MINUS',
         'TIMES',
@@ -75,12 +76,9 @@ t_MAIOREQUALS = r'>='
 t_MENOREQUALS = r'<='
 t_MINUSMINUS = r'--'
 t_PLUSPLUS = r'\+\+'
+t_INTEGER = r'\d+'
+t_FLOAT = r'((\d*\.\d+)(E[\+-]?\d+)?|([1-9]\d*E[\+-]?\d+))'
 
-
-def t_NUMBER(t):
-    r'\d+'
-    t.value = int(t.value)
-    return t
 
 def t_IDENTIFIER(t):
     r'[a-zA-Z_][a-zA-Z_0-9]*'

@@ -1,6 +1,6 @@
 import ply.yacc as yacc
 import ply.lex as lexer
-from lexer import tokens
+from NIRA_Lexer import tokens
 import sys
 import os
 
@@ -52,12 +52,12 @@ def p_var_declaration(p):
 	'''var_declaration : IDENTIFIER var_declaration
                        | IDENTIFIER 
                        | IDENTIFIER ATRIBUTION NUMBER var_declaration
-                       | IDENTIFIER ATRIBUTION NUMBER
+                       | IDENTIFIER ATRIBUTION NUMBER SEMI
                        | IDENTIFIER ATRIBUTION boolean var_declaration
-                       | IDENTIFIER ATRIBUTION boolean
+                       | IDENTIFIER ATRIBUTION boolean SEMI
                        | IDENTIFIER ATRIBUTION IDENTIFIER var_declaration
-                       | IDENTIFIER ATRIBUTION IDENTIFIER 
-                       | IDENTIFIER ATRIBUTION simple_expression 
+                       | IDENTIFIER ATRIBUTION IDENTIFIER SEMI
+                       | IDENTIFIER ATRIBUTION simple_expression SEMI
 	'''
 	pass
 
@@ -83,8 +83,8 @@ def p_selection_stmt_1(p):
 	pass
 
 def p_iteration_stmt_1(p):
-	'''iteration_stmt : FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement 
-					  | FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE print_stmt RBRACE
+	'''iteration_stmt : FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement 
+					  | FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE print_stmt RBRACE
 	'''
 	pass
 def p_iteration_stmt_2(p):
@@ -134,7 +134,7 @@ def p_relop(p):
 
 def p_additive_expression(p):
 	'''additive_expression : additive_expression addop term
-    					   | term
+    					   | term 
     					   | term MINUSMINUS
     				       | term PLUSPLUS
 	'''
@@ -170,6 +170,13 @@ def p_factor(p):
 def p_boolean(p):
 	'''boolean : TRUE
 			   | FALSE
+	'''
+	pass
+
+
+def p_number(p):
+	'''NUMBER : INTEGER
+			  | FLOAT
 	'''
 	pass
 
