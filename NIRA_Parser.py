@@ -103,6 +103,8 @@ def p_read_stmt(p):
 	'''
 		read_stmt : READ LPAREN STRING RPAREN SEMI declaration
 				  | READ LPAREN STRING RPAREN SEMI 
+			      | IDENTIFIER READ LPAREN STRING RPAREN SEMI
+				  | IDENTIFIER READ LPAREN RPAREN SEMI
 	'''
 	pass
 
