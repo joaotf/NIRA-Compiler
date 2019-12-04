@@ -8,6 +8,7 @@ from tksheet import Sheet
 from tkinter import ttk
 
 import NIRA_Lexer as lexical
+import NIRA_Parser as parser
 import NIRA_Main as Main
 
 
@@ -132,8 +133,7 @@ class Notepad:
             content = file.readlines()
         
         x = Main.main(y)
-        
-        
+
         content2 = str(x).replace(",","\n").replace("[","").replace("]","").replace("'","").replace('"',"").replace("\\","/")
     
         with open("result.txt",'w+', encoding="utf8") as file1:

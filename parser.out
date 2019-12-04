@@ -54,8 +54,8 @@ Rule 37    selection_stmt -> IF LPAREN expression RPAREN LBRACE expression RBRAC
 Rule 38    selection_stmt -> IF LPAREN expression RPAREN LBRACE expression RBRACE statement
 Rule 39    selection_stmt -> IF LPAREN expression RPAREN LBRACE print_stmt RBRACE
 Rule 40    selection_stmt -> IF LPAREN expression RPAREN LBRACE print_stmt RBRACE ELSE LBRACE print_stmt RBRACE
-Rule 41    iteration_stmt -> FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement
-Rule 42    iteration_stmt -> FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE print_stmt RBRACE
+Rule 41    iteration_stmt -> FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement
+Rule 42    iteration_stmt -> FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE statement RBRACE
 Rule 43    iteration_stmt -> WHILE LPAREN expression RPAREN LBRACE expression RBRACE statement
 Rule 44    iteration_stmt -> WHILE LPAREN expression RPAREN LBRACE print_stmt RBRACE
 Rule 45    iteration_stmt -> DO LBRACE statement SEMI RBRACE WHILE LPAREN expression RPAREN SEMI
@@ -144,7 +144,7 @@ RCOLCHETE            :
 READ                 : 47 48 49 50
 RETURN               : 
 RPAREN               : 10 11 12 13 14 15 16 17 18 19 20 21 37 38 39 40 41 42 43 44 45 46 47 48 49 50 74 78
-SEMI                 : 10 11 12 13 14 15 16 17 18 19 20 21 25 27 29 30 41 42 45 45 46 47 48 49 50
+SEMI                 : 10 11 12 13 14 15 16 17 18 19 20 21 25 27 29 30 41 41 42 42 45 45 46 47 48 49 50
 STRING               : 10 11 47 48 49
 STRINGS              : 
 TIMES                : 72 88
@@ -170,13 +170,13 @@ expression_stmt      : 31
 factor               : 70 71
 iteration_stmt       : 8 33
 mulop                : 70
-print_stmt           : 5 34 39 40 40 42 44 46
+print_stmt           : 5 34 39 40 40 44 46
 program              : 0
 read_stmt            : 6 35
 relop                : 56
 selection_stmt       : 7 32
 simple_expression    : 30 52
-statement            : 37 38 41 43 45
+statement            : 37 38 41 42 43 45
 term                 : 64 65 66 67 70 86 87 88 89 90 91 92
 var_declaration      : 4 22 24 26 28 41 42
 
@@ -223,8 +223,8 @@ state 0
     (38) selection_stmt -> . IF LPAREN expression RPAREN LBRACE expression RBRACE statement
     (39) selection_stmt -> . IF LPAREN expression RPAREN LBRACE print_stmt RBRACE
     (40) selection_stmt -> . IF LPAREN expression RPAREN LBRACE print_stmt RBRACE ELSE LBRACE print_stmt RBRACE
-    (41) iteration_stmt -> . FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement
-    (42) iteration_stmt -> . FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE print_stmt RBRACE
+    (41) iteration_stmt -> . FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement
+    (42) iteration_stmt -> . FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE statement RBRACE
     (43) iteration_stmt -> . WHILE LPAREN expression RPAREN LBRACE expression RBRACE statement
     (44) iteration_stmt -> . WHILE LPAREN expression RPAREN LBRACE print_stmt RBRACE
     (45) iteration_stmt -> . DO LBRACE statement SEMI RBRACE WHILE LPAREN expression RPAREN SEMI
@@ -333,8 +333,8 @@ state 2
     (38) selection_stmt -> . IF LPAREN expression RPAREN LBRACE expression RBRACE statement
     (39) selection_stmt -> . IF LPAREN expression RPAREN LBRACE print_stmt RBRACE
     (40) selection_stmt -> . IF LPAREN expression RPAREN LBRACE print_stmt RBRACE ELSE LBRACE print_stmt RBRACE
-    (41) iteration_stmt -> . FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement
-    (42) iteration_stmt -> . FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE print_stmt RBRACE
+    (41) iteration_stmt -> . FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement
+    (42) iteration_stmt -> . FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE statement RBRACE
     (43) iteration_stmt -> . WHILE LPAREN expression RPAREN LBRACE expression RBRACE statement
     (44) iteration_stmt -> . WHILE LPAREN expression RPAREN LBRACE print_stmt RBRACE
     (45) iteration_stmt -> . DO LBRACE statement SEMI RBRACE WHILE LPAREN expression RPAREN SEMI
@@ -847,8 +847,8 @@ state 17
 
 state 18
 
-    (41) iteration_stmt -> FOR . LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement
-    (42) iteration_stmt -> FOR . LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE print_stmt RBRACE
+    (41) iteration_stmt -> FOR . LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement
+    (42) iteration_stmt -> FOR . LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE statement RBRACE
 
     LPAREN          shift and go to state 47
 
@@ -1814,8 +1814,8 @@ state 46
 
 state 47
 
-    (41) iteration_stmt -> FOR LPAREN . var_declaration expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement
-    (42) iteration_stmt -> FOR LPAREN . var_declaration expression SEMI additive_expression RPAREN LBRACE print_stmt RBRACE
+    (41) iteration_stmt -> FOR LPAREN . var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement
+    (42) iteration_stmt -> FOR LPAREN . var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE statement RBRACE
     (22) var_declaration -> . IDENTIFIER var_declaration
     (23) var_declaration -> . IDENTIFIER
     (24) var_declaration -> . IDENTIFIER ATRIBUTION NUMBER var_declaration
@@ -2060,8 +2060,8 @@ state 59
     (38) selection_stmt -> . IF LPAREN expression RPAREN LBRACE expression RBRACE statement
     (39) selection_stmt -> . IF LPAREN expression RPAREN LBRACE print_stmt RBRACE
     (40) selection_stmt -> . IF LPAREN expression RPAREN LBRACE print_stmt RBRACE ELSE LBRACE print_stmt RBRACE
-    (41) iteration_stmt -> . FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement
-    (42) iteration_stmt -> . FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE print_stmt RBRACE
+    (41) iteration_stmt -> . FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement
+    (42) iteration_stmt -> . FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE statement RBRACE
     (43) iteration_stmt -> . WHILE LPAREN expression RPAREN LBRACE expression RBRACE statement
     (44) iteration_stmt -> . WHILE LPAREN expression RPAREN LBRACE print_stmt RBRACE
     (45) iteration_stmt -> . DO LBRACE statement SEMI RBRACE WHILE LPAREN expression RPAREN SEMI
@@ -3255,52 +3255,11 @@ state 94
 
 state 95
 
-    (41) iteration_stmt -> FOR LPAREN var_declaration . expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement
-    (42) iteration_stmt -> FOR LPAREN var_declaration . expression SEMI additive_expression RPAREN LBRACE print_stmt RBRACE
-    (51) expression -> . IDENTIFIER EQUALITY expression
-    (52) expression -> . simple_expression
-    (53) expression -> . IDENTIFIER EQUALITY IDENTIFIER
-    (54) expression -> . expression LOG expression
-    (55) expression -> . expression OU_LOGICO expression
-    (86) expression -> . expression PLUS term
-    (87) expression -> . expression MINUS term
-    (88) expression -> . expression TIMES term
-    (89) expression -> . expression DIVIDE term
-    (90) expression -> . expression TIMESX term
-    (91) expression -> . expression LOG term
-    (92) expression -> . expression OU_LOGICO term
-    (56) simple_expression -> . additive_expression relop additive_expression
-    (57) simple_expression -> . additive_expression
-    (64) additive_expression -> . additive_expression addop term
-    (65) additive_expression -> . term
-    (66) additive_expression -> . term MINUSMINUS
-    (67) additive_expression -> . term PLUSPLUS
-    (70) term -> . term mulop factor
-    (71) term -> . factor
-    (74) factor -> . LPAREN expression RPAREN
-    (75) factor -> . IDENTIFIER
-    (76) factor -> . NUMBER
-    (77) factor -> . boolean
-    (78) factor -> . IDENTIFIER LPAREN args RPAREN
-    (81) NUMBER -> . INTEGER
-    (82) NUMBER -> . FLOAT
-    (79) boolean -> . TRUE
-    (80) boolean -> . FALSE
+    (41) iteration_stmt -> FOR LPAREN var_declaration . SEMI expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement
+    (42) iteration_stmt -> FOR LPAREN var_declaration . SEMI expression SEMI additive_expression RPAREN LBRACE statement RBRACE
 
-    IDENTIFIER      shift and go to state 44
-    LPAREN          shift and go to state 15
-    INTEGER         shift and go to state 24
-    FLOAT           shift and go to state 25
-    TRUE            shift and go to state 26
-    FALSE           shift and go to state 27
+    SEMI            shift and go to state 126
 
-    expression                     shift and go to state 126
-    additive_expression            shift and go to state 19
-    simple_expression              shift and go to state 13
-    term                           shift and go to state 22
-    factor                         shift and go to state 23
-    NUMBER                         shift and go to state 11
-    boolean                        shift and go to state 12
 
 state 96
 
@@ -3875,8 +3834,8 @@ state 119
     (38) selection_stmt -> . IF LPAREN expression RPAREN LBRACE expression RBRACE statement
     (39) selection_stmt -> . IF LPAREN expression RPAREN LBRACE print_stmt RBRACE
     (40) selection_stmt -> . IF LPAREN expression RPAREN LBRACE print_stmt RBRACE ELSE LBRACE print_stmt RBRACE
-    (41) iteration_stmt -> . FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement
-    (42) iteration_stmt -> . FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE print_stmt RBRACE
+    (41) iteration_stmt -> . FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement
+    (42) iteration_stmt -> . FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE statement RBRACE
     (43) iteration_stmt -> . WHILE LPAREN expression RPAREN LBRACE expression RBRACE statement
     (44) iteration_stmt -> . WHILE LPAREN expression RPAREN LBRACE print_stmt RBRACE
     (45) iteration_stmt -> . DO LBRACE statement SEMI RBRACE WHILE LPAREN expression RPAREN SEMI
@@ -4018,27 +3977,52 @@ state 125
 
 state 126
 
-    (41) iteration_stmt -> FOR LPAREN var_declaration expression . SEMI additive_expression RPAREN LBRACE expression RBRACE statement
-    (42) iteration_stmt -> FOR LPAREN var_declaration expression . SEMI additive_expression RPAREN LBRACE print_stmt RBRACE
-    (54) expression -> expression . LOG expression
-    (55) expression -> expression . OU_LOGICO expression
-    (86) expression -> expression . PLUS term
-    (87) expression -> expression . MINUS term
-    (88) expression -> expression . TIMES term
-    (89) expression -> expression . DIVIDE term
-    (90) expression -> expression . TIMESX term
-    (91) expression -> expression . LOG term
-    (92) expression -> expression . OU_LOGICO term
+    (41) iteration_stmt -> FOR LPAREN var_declaration SEMI . expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement
+    (42) iteration_stmt -> FOR LPAREN var_declaration SEMI . expression SEMI additive_expression RPAREN LBRACE statement RBRACE
+    (51) expression -> . IDENTIFIER EQUALITY expression
+    (52) expression -> . simple_expression
+    (53) expression -> . IDENTIFIER EQUALITY IDENTIFIER
+    (54) expression -> . expression LOG expression
+    (55) expression -> . expression OU_LOGICO expression
+    (86) expression -> . expression PLUS term
+    (87) expression -> . expression MINUS term
+    (88) expression -> . expression TIMES term
+    (89) expression -> . expression DIVIDE term
+    (90) expression -> . expression TIMESX term
+    (91) expression -> . expression LOG term
+    (92) expression -> . expression OU_LOGICO term
+    (56) simple_expression -> . additive_expression relop additive_expression
+    (57) simple_expression -> . additive_expression
+    (64) additive_expression -> . additive_expression addop term
+    (65) additive_expression -> . term
+    (66) additive_expression -> . term MINUSMINUS
+    (67) additive_expression -> . term PLUSPLUS
+    (70) term -> . term mulop factor
+    (71) term -> . factor
+    (74) factor -> . LPAREN expression RPAREN
+    (75) factor -> . IDENTIFIER
+    (76) factor -> . NUMBER
+    (77) factor -> . boolean
+    (78) factor -> . IDENTIFIER LPAREN args RPAREN
+    (81) NUMBER -> . INTEGER
+    (82) NUMBER -> . FLOAT
+    (79) boolean -> . TRUE
+    (80) boolean -> . FALSE
 
-    SEMI            shift and go to state 140
-    LOG             shift and go to state 29
-    OU_LOGICO       shift and go to state 30
-    PLUS            shift and go to state 31
-    MINUS           shift and go to state 32
-    TIMES           shift and go to state 33
-    DIVIDE          shift and go to state 34
-    TIMESX          shift and go to state 35
+    IDENTIFIER      shift and go to state 44
+    LPAREN          shift and go to state 15
+    INTEGER         shift and go to state 24
+    FLOAT           shift and go to state 25
+    TRUE            shift and go to state 26
+    FALSE           shift and go to state 27
 
+    expression                     shift and go to state 140
+    additive_expression            shift and go to state 19
+    simple_expression              shift and go to state 13
+    term                           shift and go to state 22
+    factor                         shift and go to state 23
+    NUMBER                         shift and go to state 11
+    boolean                        shift and go to state 12
 
 state 127
 
@@ -4129,8 +4113,8 @@ state 132
     (38) selection_stmt -> . IF LPAREN expression RPAREN LBRACE expression RBRACE statement
     (39) selection_stmt -> . IF LPAREN expression RPAREN LBRACE print_stmt RBRACE
     (40) selection_stmt -> . IF LPAREN expression RPAREN LBRACE print_stmt RBRACE ELSE LBRACE print_stmt RBRACE
-    (41) iteration_stmt -> . FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement
-    (42) iteration_stmt -> . FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE print_stmt RBRACE
+    (41) iteration_stmt -> . FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement
+    (42) iteration_stmt -> . FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE statement RBRACE
     (43) iteration_stmt -> . WHILE LPAREN expression RPAREN LBRACE expression RBRACE statement
     (44) iteration_stmt -> . WHILE LPAREN expression RPAREN LBRACE print_stmt RBRACE
     (45) iteration_stmt -> . DO LBRACE statement SEMI RBRACE WHILE LPAREN expression RPAREN SEMI
@@ -4280,8 +4264,8 @@ state 134
     (38) selection_stmt -> . IF LPAREN expression RPAREN LBRACE expression RBRACE statement
     (39) selection_stmt -> . IF LPAREN expression RPAREN LBRACE print_stmt RBRACE
     (40) selection_stmt -> . IF LPAREN expression RPAREN LBRACE print_stmt RBRACE ELSE LBRACE print_stmt RBRACE
-    (41) iteration_stmt -> . FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement
-    (42) iteration_stmt -> . FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE print_stmt RBRACE
+    (41) iteration_stmt -> . FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement
+    (42) iteration_stmt -> . FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE statement RBRACE
     (43) iteration_stmt -> . WHILE LPAREN expression RPAREN LBRACE expression RBRACE statement
     (44) iteration_stmt -> . WHILE LPAREN expression RPAREN LBRACE print_stmt RBRACE
     (45) iteration_stmt -> . DO LBRACE statement SEMI RBRACE WHILE LPAREN expression RPAREN SEMI
@@ -4410,8 +4394,8 @@ state 135
     (38) selection_stmt -> . IF LPAREN expression RPAREN LBRACE expression RBRACE statement
     (39) selection_stmt -> . IF LPAREN expression RPAREN LBRACE print_stmt RBRACE
     (40) selection_stmt -> . IF LPAREN expression RPAREN LBRACE print_stmt RBRACE ELSE LBRACE print_stmt RBRACE
-    (41) iteration_stmt -> . FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement
-    (42) iteration_stmt -> . FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE print_stmt RBRACE
+    (41) iteration_stmt -> . FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement
+    (42) iteration_stmt -> . FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE statement RBRACE
     (43) iteration_stmt -> . WHILE LPAREN expression RPAREN LBRACE expression RBRACE statement
     (44) iteration_stmt -> . WHILE LPAREN expression RPAREN LBRACE print_stmt RBRACE
     (45) iteration_stmt -> . DO LBRACE statement SEMI RBRACE WHILE LPAREN expression RPAREN SEMI
@@ -4540,8 +4524,8 @@ state 136
     (38) selection_stmt -> . IF LPAREN expression RPAREN LBRACE expression RBRACE statement
     (39) selection_stmt -> . IF LPAREN expression RPAREN LBRACE print_stmt RBRACE
     (40) selection_stmt -> . IF LPAREN expression RPAREN LBRACE print_stmt RBRACE ELSE LBRACE print_stmt RBRACE
-    (41) iteration_stmt -> . FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement
-    (42) iteration_stmt -> . FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE print_stmt RBRACE
+    (41) iteration_stmt -> . FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement
+    (42) iteration_stmt -> . FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE statement RBRACE
     (43) iteration_stmt -> . WHILE LPAREN expression RPAREN LBRACE expression RBRACE statement
     (44) iteration_stmt -> . WHILE LPAREN expression RPAREN LBRACE print_stmt RBRACE
     (45) iteration_stmt -> . DO LBRACE statement SEMI RBRACE WHILE LPAREN expression RPAREN SEMI
@@ -4670,8 +4654,8 @@ state 137
     (38) selection_stmt -> . IF LPAREN expression RPAREN LBRACE expression RBRACE statement
     (39) selection_stmt -> . IF LPAREN expression RPAREN LBRACE print_stmt RBRACE
     (40) selection_stmt -> . IF LPAREN expression RPAREN LBRACE print_stmt RBRACE ELSE LBRACE print_stmt RBRACE
-    (41) iteration_stmt -> . FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement
-    (42) iteration_stmt -> . FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE print_stmt RBRACE
+    (41) iteration_stmt -> . FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement
+    (42) iteration_stmt -> . FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE statement RBRACE
     (43) iteration_stmt -> . WHILE LPAREN expression RPAREN LBRACE expression RBRACE statement
     (44) iteration_stmt -> . WHILE LPAREN expression RPAREN LBRACE print_stmt RBRACE
     (45) iteration_stmt -> . DO LBRACE statement SEMI RBRACE WHILE LPAREN expression RPAREN SEMI
@@ -4800,8 +4784,8 @@ state 138
     (38) selection_stmt -> . IF LPAREN expression RPAREN LBRACE expression RBRACE statement
     (39) selection_stmt -> . IF LPAREN expression RPAREN LBRACE print_stmt RBRACE
     (40) selection_stmt -> . IF LPAREN expression RPAREN LBRACE print_stmt RBRACE ELSE LBRACE print_stmt RBRACE
-    (41) iteration_stmt -> . FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement
-    (42) iteration_stmt -> . FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE print_stmt RBRACE
+    (41) iteration_stmt -> . FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement
+    (42) iteration_stmt -> . FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE statement RBRACE
     (43) iteration_stmt -> . WHILE LPAREN expression RPAREN LBRACE expression RBRACE statement
     (44) iteration_stmt -> . WHILE LPAREN expression RPAREN LBRACE print_stmt RBRACE
     (45) iteration_stmt -> . DO LBRACE statement SEMI RBRACE WHILE LPAREN expression RPAREN SEMI
@@ -4958,36 +4942,27 @@ state 139
 
 state 140
 
-    (41) iteration_stmt -> FOR LPAREN var_declaration expression SEMI . additive_expression RPAREN LBRACE expression RBRACE statement
-    (42) iteration_stmt -> FOR LPAREN var_declaration expression SEMI . additive_expression RPAREN LBRACE print_stmt RBRACE
-    (64) additive_expression -> . additive_expression addop term
-    (65) additive_expression -> . term
-    (66) additive_expression -> . term MINUSMINUS
-    (67) additive_expression -> . term PLUSPLUS
-    (70) term -> . term mulop factor
-    (71) term -> . factor
-    (74) factor -> . LPAREN expression RPAREN
-    (75) factor -> . IDENTIFIER
-    (76) factor -> . NUMBER
-    (77) factor -> . boolean
-    (78) factor -> . IDENTIFIER LPAREN args RPAREN
-    (81) NUMBER -> . INTEGER
-    (82) NUMBER -> . FLOAT
-    (79) boolean -> . TRUE
-    (80) boolean -> . FALSE
+    (41) iteration_stmt -> FOR LPAREN var_declaration SEMI expression . SEMI additive_expression RPAREN LBRACE expression RBRACE statement
+    (42) iteration_stmt -> FOR LPAREN var_declaration SEMI expression . SEMI additive_expression RPAREN LBRACE statement RBRACE
+    (54) expression -> expression . LOG expression
+    (55) expression -> expression . OU_LOGICO expression
+    (86) expression -> expression . PLUS term
+    (87) expression -> expression . MINUS term
+    (88) expression -> expression . TIMES term
+    (89) expression -> expression . DIVIDE term
+    (90) expression -> expression . TIMESX term
+    (91) expression -> expression . LOG term
+    (92) expression -> expression . OU_LOGICO term
 
-    LPAREN          shift and go to state 15
-    IDENTIFIER      shift and go to state 70
-    INTEGER         shift and go to state 24
-    FLOAT           shift and go to state 25
-    TRUE            shift and go to state 26
-    FALSE           shift and go to state 27
+    SEMI            shift and go to state 153
+    LOG             shift and go to state 29
+    OU_LOGICO       shift and go to state 30
+    PLUS            shift and go to state 31
+    MINUS           shift and go to state 32
+    TIMES           shift and go to state 33
+    DIVIDE          shift and go to state 34
+    TIMESX          shift and go to state 35
 
-    additive_expression            shift and go to state 153
-    term                           shift and go to state 22
-    factor                         shift and go to state 23
-    NUMBER                         shift and go to state 11
-    boolean                        shift and go to state 12
 
 state 141
 
@@ -5247,17 +5222,36 @@ state 152
 
 state 153
 
-    (41) iteration_stmt -> FOR LPAREN var_declaration expression SEMI additive_expression . RPAREN LBRACE expression RBRACE statement
-    (42) iteration_stmt -> FOR LPAREN var_declaration expression SEMI additive_expression . RPAREN LBRACE print_stmt RBRACE
-    (64) additive_expression -> additive_expression . addop term
-    (68) addop -> . PLUS
-    (69) addop -> . MINUS
+    (41) iteration_stmt -> FOR LPAREN var_declaration SEMI expression SEMI . additive_expression RPAREN LBRACE expression RBRACE statement
+    (42) iteration_stmt -> FOR LPAREN var_declaration SEMI expression SEMI . additive_expression RPAREN LBRACE statement RBRACE
+    (64) additive_expression -> . additive_expression addop term
+    (65) additive_expression -> . term
+    (66) additive_expression -> . term MINUSMINUS
+    (67) additive_expression -> . term PLUSPLUS
+    (70) term -> . term mulop factor
+    (71) term -> . factor
+    (74) factor -> . LPAREN expression RPAREN
+    (75) factor -> . IDENTIFIER
+    (76) factor -> . NUMBER
+    (77) factor -> . boolean
+    (78) factor -> . IDENTIFIER LPAREN args RPAREN
+    (81) NUMBER -> . INTEGER
+    (82) NUMBER -> . FLOAT
+    (79) boolean -> . TRUE
+    (80) boolean -> . FALSE
 
-    RPAREN          shift and go to state 160
-    PLUS            shift and go to state 56
-    MINUS           shift and go to state 57
+    LPAREN          shift and go to state 15
+    IDENTIFIER      shift and go to state 70
+    INTEGER         shift and go to state 24
+    FLOAT           shift and go to state 25
+    TRUE            shift and go to state 26
+    FALSE           shift and go to state 27
 
-    addop                          shift and go to state 49
+    additive_expression            shift and go to state 160
+    term                           shift and go to state 22
+    factor                         shift and go to state 23
+    NUMBER                         shift and go to state 11
+    boolean                        shift and go to state 12
 
 state 154
 
@@ -5358,8 +5352,8 @@ state 158
     (38) selection_stmt -> . IF LPAREN expression RPAREN LBRACE expression RBRACE statement
     (39) selection_stmt -> . IF LPAREN expression RPAREN LBRACE print_stmt RBRACE
     (40) selection_stmt -> . IF LPAREN expression RPAREN LBRACE print_stmt RBRACE ELSE LBRACE print_stmt RBRACE
-    (41) iteration_stmt -> . FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement
-    (42) iteration_stmt -> . FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE print_stmt RBRACE
+    (41) iteration_stmt -> . FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement
+    (42) iteration_stmt -> . FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE statement RBRACE
     (43) iteration_stmt -> . WHILE LPAREN expression RPAREN LBRACE expression RBRACE statement
     (44) iteration_stmt -> . WHILE LPAREN expression RPAREN LBRACE print_stmt RBRACE
     (45) iteration_stmt -> . DO LBRACE statement SEMI RBRACE WHILE LPAREN expression RPAREN SEMI
@@ -5463,11 +5457,17 @@ state 159
 
 state 160
 
-    (41) iteration_stmt -> FOR LPAREN var_declaration expression SEMI additive_expression RPAREN . LBRACE expression RBRACE statement
-    (42) iteration_stmt -> FOR LPAREN var_declaration expression SEMI additive_expression RPAREN . LBRACE print_stmt RBRACE
+    (41) iteration_stmt -> FOR LPAREN var_declaration SEMI expression SEMI additive_expression . RPAREN LBRACE expression RBRACE statement
+    (42) iteration_stmt -> FOR LPAREN var_declaration SEMI expression SEMI additive_expression . RPAREN LBRACE statement RBRACE
+    (64) additive_expression -> additive_expression . addop term
+    (68) addop -> . PLUS
+    (69) addop -> . MINUS
 
-    LBRACE          shift and go to state 169
+    RPAREN          shift and go to state 169
+    PLUS            shift and go to state 56
+    MINUS           shift and go to state 57
 
+    addop                          shift and go to state 49
 
 state 161
 
@@ -5482,8 +5482,8 @@ state 161
     (38) selection_stmt -> . IF LPAREN expression RPAREN LBRACE expression RBRACE statement
     (39) selection_stmt -> . IF LPAREN expression RPAREN LBRACE print_stmt RBRACE
     (40) selection_stmt -> . IF LPAREN expression RPAREN LBRACE print_stmt RBRACE ELSE LBRACE print_stmt RBRACE
-    (41) iteration_stmt -> . FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement
-    (42) iteration_stmt -> . FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE print_stmt RBRACE
+    (41) iteration_stmt -> . FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement
+    (42) iteration_stmt -> . FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE statement RBRACE
     (43) iteration_stmt -> . WHILE LPAREN expression RPAREN LBRACE expression RBRACE statement
     (44) iteration_stmt -> . WHILE LPAREN expression RPAREN LBRACE print_stmt RBRACE
     (45) iteration_stmt -> . DO LBRACE statement SEMI RBRACE WHILE LPAREN expression RPAREN SEMI
@@ -5711,66 +5711,11 @@ state 168
 
 state 169
 
-    (41) iteration_stmt -> FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE . expression RBRACE statement
-    (42) iteration_stmt -> FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE . print_stmt RBRACE
-    (51) expression -> . IDENTIFIER EQUALITY expression
-    (52) expression -> . simple_expression
-    (53) expression -> . IDENTIFIER EQUALITY IDENTIFIER
-    (54) expression -> . expression LOG expression
-    (55) expression -> . expression OU_LOGICO expression
-    (86) expression -> . expression PLUS term
-    (87) expression -> . expression MINUS term
-    (88) expression -> . expression TIMES term
-    (89) expression -> . expression DIVIDE term
-    (90) expression -> . expression TIMESX term
-    (91) expression -> . expression LOG term
-    (92) expression -> . expression OU_LOGICO term
-    (10) print_stmt -> . PRINT LPAREN STRING RPAREN SEMI declaration
-    (11) print_stmt -> . PRINT LPAREN STRING RPAREN SEMI
-    (12) print_stmt -> . PRINT LPAREN IDENTIFIER RPAREN SEMI declaration
-    (13) print_stmt -> . PRINT LPAREN IDENTIFIER RPAREN SEMI
-    (14) print_stmt -> . PRINT LPAREN NUMBER RPAREN SEMI declaration
-    (15) print_stmt -> . PRINT LPAREN NUMBER RPAREN SEMI
-    (16) print_stmt -> . PRINT LPAREN boolean RPAREN SEMI declaration
-    (17) print_stmt -> . PRINT LPAREN boolean RPAREN SEMI
-    (18) print_stmt -> . PRINT LPAREN expression RPAREN SEMI declaration
-    (19) print_stmt -> . PRINT LPAREN expression RPAREN SEMI
-    (20) print_stmt -> . PRINT LPAREN RPAREN SEMI declaration
-    (21) print_stmt -> . PRINT LPAREN RPAREN SEMI
-    (56) simple_expression -> . additive_expression relop additive_expression
-    (57) simple_expression -> . additive_expression
-    (64) additive_expression -> . additive_expression addop term
-    (65) additive_expression -> . term
-    (66) additive_expression -> . term MINUSMINUS
-    (67) additive_expression -> . term PLUSPLUS
-    (70) term -> . term mulop factor
-    (71) term -> . factor
-    (74) factor -> . LPAREN expression RPAREN
-    (75) factor -> . IDENTIFIER
-    (76) factor -> . NUMBER
-    (77) factor -> . boolean
-    (78) factor -> . IDENTIFIER LPAREN args RPAREN
-    (81) NUMBER -> . INTEGER
-    (82) NUMBER -> . FLOAT
-    (79) boolean -> . TRUE
-    (80) boolean -> . FALSE
+    (41) iteration_stmt -> FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN . LBRACE expression RBRACE statement
+    (42) iteration_stmt -> FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN . LBRACE statement RBRACE
 
-    IDENTIFIER      shift and go to state 44
-    PRINT           shift and go to state 14
-    LPAREN          shift and go to state 15
-    INTEGER         shift and go to state 24
-    FLOAT           shift and go to state 25
-    TRUE            shift and go to state 26
-    FALSE           shift and go to state 27
+    LBRACE          shift and go to state 175
 
-    expression                     shift and go to state 175
-    additive_expression            shift and go to state 19
-    print_stmt                     shift and go to state 176
-    simple_expression              shift and go to state 13
-    term                           shift and go to state 22
-    NUMBER                         shift and go to state 11
-    boolean                        shift and go to state 12
-    factor                         shift and go to state 23
 
 state 170
 
@@ -5806,7 +5751,7 @@ state 171
     (91) expression -> expression . LOG term
     (92) expression -> expression . OU_LOGICO term
 
-    RPAREN          shift and go to state 177
+    RPAREN          shift and go to state 176
     LOG             shift and go to state 29
     OU_LOGICO       shift and go to state 30
     PLUS            shift and go to state 31
@@ -5820,7 +5765,7 @@ state 172
 
     (46) iteration_stmt -> DO LBRACE print_stmt RBRACE WHILE LPAREN expression RPAREN . SEMI
 
-    SEMI            shift and go to state 178
+    SEMI            shift and go to state 177
 
 
 state 173
@@ -5863,7 +5808,7 @@ state 173
     TRUE            shift and go to state 26
     FALSE           shift and go to state 27
 
-    expression                     shift and go to state 179
+    expression                     shift and go to state 178
     simple_expression              shift and go to state 13
     term                           shift and go to state 22
     additive_expression            shift and go to state 19
@@ -5889,46 +5834,109 @@ state 174
 
     PRINT           shift and go to state 14
 
-    print_stmt                     shift and go to state 180
+    print_stmt                     shift and go to state 179
 
 state 175
 
-    (41) iteration_stmt -> FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE expression . RBRACE statement
-    (54) expression -> expression . LOG expression
-    (55) expression -> expression . OU_LOGICO expression
-    (86) expression -> expression . PLUS term
-    (87) expression -> expression . MINUS term
-    (88) expression -> expression . TIMES term
-    (89) expression -> expression . DIVIDE term
-    (90) expression -> expression . TIMESX term
-    (91) expression -> expression . LOG term
-    (92) expression -> expression . OU_LOGICO term
+    (41) iteration_stmt -> FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE . expression RBRACE statement
+    (42) iteration_stmt -> FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE . statement RBRACE
+    (51) expression -> . IDENTIFIER EQUALITY expression
+    (52) expression -> . simple_expression
+    (53) expression -> . IDENTIFIER EQUALITY IDENTIFIER
+    (54) expression -> . expression LOG expression
+    (55) expression -> . expression OU_LOGICO expression
+    (86) expression -> . expression PLUS term
+    (87) expression -> . expression MINUS term
+    (88) expression -> . expression TIMES term
+    (89) expression -> . expression DIVIDE term
+    (90) expression -> . expression TIMESX term
+    (91) expression -> . expression LOG term
+    (92) expression -> . expression OU_LOGICO term
+    (31) statement -> . expression_stmt
+    (32) statement -> . selection_stmt
+    (33) statement -> . iteration_stmt
+    (34) statement -> . print_stmt
+    (35) statement -> . read_stmt
+    (56) simple_expression -> . additive_expression relop additive_expression
+    (57) simple_expression -> . additive_expression
+    (36) expression_stmt -> . expression
+    (37) selection_stmt -> . IF LPAREN expression RPAREN LBRACE expression RBRACE ELSE LBRACE expression RBRACE statement
+    (38) selection_stmt -> . IF LPAREN expression RPAREN LBRACE expression RBRACE statement
+    (39) selection_stmt -> . IF LPAREN expression RPAREN LBRACE print_stmt RBRACE
+    (40) selection_stmt -> . IF LPAREN expression RPAREN LBRACE print_stmt RBRACE ELSE LBRACE print_stmt RBRACE
+    (41) iteration_stmt -> . FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement
+    (42) iteration_stmt -> . FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE statement RBRACE
+    (43) iteration_stmt -> . WHILE LPAREN expression RPAREN LBRACE expression RBRACE statement
+    (44) iteration_stmt -> . WHILE LPAREN expression RPAREN LBRACE print_stmt RBRACE
+    (45) iteration_stmt -> . DO LBRACE statement SEMI RBRACE WHILE LPAREN expression RPAREN SEMI
+    (46) iteration_stmt -> . DO LBRACE print_stmt RBRACE WHILE LPAREN expression RPAREN SEMI
+    (10) print_stmt -> . PRINT LPAREN STRING RPAREN SEMI declaration
+    (11) print_stmt -> . PRINT LPAREN STRING RPAREN SEMI
+    (12) print_stmt -> . PRINT LPAREN IDENTIFIER RPAREN SEMI declaration
+    (13) print_stmt -> . PRINT LPAREN IDENTIFIER RPAREN SEMI
+    (14) print_stmt -> . PRINT LPAREN NUMBER RPAREN SEMI declaration
+    (15) print_stmt -> . PRINT LPAREN NUMBER RPAREN SEMI
+    (16) print_stmt -> . PRINT LPAREN boolean RPAREN SEMI declaration
+    (17) print_stmt -> . PRINT LPAREN boolean RPAREN SEMI
+    (18) print_stmt -> . PRINT LPAREN expression RPAREN SEMI declaration
+    (19) print_stmt -> . PRINT LPAREN expression RPAREN SEMI
+    (20) print_stmt -> . PRINT LPAREN RPAREN SEMI declaration
+    (21) print_stmt -> . PRINT LPAREN RPAREN SEMI
+    (47) read_stmt -> . READ LPAREN STRING RPAREN SEMI declaration
+    (48) read_stmt -> . READ LPAREN STRING RPAREN SEMI
+    (49) read_stmt -> . IDENTIFIER READ LPAREN STRING RPAREN SEMI
+    (50) read_stmt -> . IDENTIFIER READ LPAREN RPAREN SEMI
+    (64) additive_expression -> . additive_expression addop term
+    (65) additive_expression -> . term
+    (66) additive_expression -> . term MINUSMINUS
+    (67) additive_expression -> . term PLUSPLUS
+    (70) term -> . term mulop factor
+    (71) term -> . factor
+    (74) factor -> . LPAREN expression RPAREN
+    (75) factor -> . IDENTIFIER
+    (76) factor -> . NUMBER
+    (77) factor -> . boolean
+    (78) factor -> . IDENTIFIER LPAREN args RPAREN
+    (81) NUMBER -> . INTEGER
+    (82) NUMBER -> . FLOAT
+    (79) boolean -> . TRUE
+    (80) boolean -> . FALSE
 
-    RBRACE          shift and go to state 181
-    LOG             shift and go to state 29
-    OU_LOGICO       shift and go to state 30
-    PLUS            shift and go to state 31
-    MINUS           shift and go to state 32
-    TIMES           shift and go to state 33
-    DIVIDE          shift and go to state 34
-    TIMESX          shift and go to state 35
+    IDENTIFIER      shift and go to state 182
+    IF              shift and go to state 17
+    FOR             shift and go to state 18
+    WHILE           shift and go to state 20
+    DO              shift and go to state 21
+    PRINT           shift and go to state 14
+    READ            shift and go to state 16
+    LPAREN          shift and go to state 15
+    INTEGER         shift and go to state 24
+    FLOAT           shift and go to state 25
+    TRUE            shift and go to state 26
+    FALSE           shift and go to state 27
 
+    expression                     shift and go to state 180
+    additive_expression            shift and go to state 19
+    statement                      shift and go to state 181
+    simple_expression              shift and go to state 13
+    term                           shift and go to state 22
+    expression_stmt                shift and go to state 102
+    selection_stmt                 shift and go to state 103
+    iteration_stmt                 shift and go to state 104
+    print_stmt                     shift and go to state 167
+    read_stmt                      shift and go to state 105
+    NUMBER                         shift and go to state 11
+    boolean                        shift and go to state 12
+    factor                         shift and go to state 23
 
 state 176
-
-    (42) iteration_stmt -> FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE print_stmt . RBRACE
-
-    RBRACE          shift and go to state 182
-
-
-state 177
 
     (45) iteration_stmt -> DO LBRACE statement SEMI RBRACE WHILE LPAREN expression RPAREN . SEMI
 
     SEMI            shift and go to state 183
 
 
-state 178
+state 177
 
     (46) iteration_stmt -> DO LBRACE print_stmt RBRACE WHILE LPAREN expression RPAREN SEMI .
 
@@ -5949,7 +5957,7 @@ state 178
     RBRACE          reduce using rule 46 (iteration_stmt -> DO LBRACE print_stmt RBRACE WHILE LPAREN expression RPAREN SEMI .)
 
 
-state 179
+state 178
 
     (37) selection_stmt -> IF LPAREN expression RPAREN LBRACE expression RBRACE ELSE LBRACE expression . RBRACE statement
     (54) expression -> expression . LOG expression
@@ -5972,124 +5980,77 @@ state 179
     TIMESX          shift and go to state 35
 
 
-state 180
+state 179
 
     (40) selection_stmt -> IF LPAREN expression RPAREN LBRACE print_stmt RBRACE ELSE LBRACE print_stmt . RBRACE
 
     RBRACE          shift and go to state 185
 
 
+state 180
+
+    (41) iteration_stmt -> FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE expression . RBRACE statement
+    (54) expression -> expression . LOG expression
+    (55) expression -> expression . OU_LOGICO expression
+    (86) expression -> expression . PLUS term
+    (87) expression -> expression . MINUS term
+    (88) expression -> expression . TIMES term
+    (89) expression -> expression . DIVIDE term
+    (90) expression -> expression . TIMESX term
+    (91) expression -> expression . LOG term
+    (92) expression -> expression . OU_LOGICO term
+    (36) expression_stmt -> expression .
+
+  ! shift/reduce conflict for RBRACE resolved as shift
+    RBRACE          shift and go to state 186
+    LOG             shift and go to state 29
+    OU_LOGICO       shift and go to state 30
+    PLUS            shift and go to state 31
+    MINUS           shift and go to state 32
+    TIMES           shift and go to state 33
+    DIVIDE          shift and go to state 34
+    TIMESX          shift and go to state 35
+
+  ! RBRACE          [ reduce using rule 36 (expression_stmt -> expression .) ]
+
+
 state 181
 
-    (41) iteration_stmt -> FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE expression RBRACE . statement
-    (31) statement -> . expression_stmt
-    (32) statement -> . selection_stmt
-    (33) statement -> . iteration_stmt
-    (34) statement -> . print_stmt
-    (35) statement -> . read_stmt
-    (36) expression_stmt -> . expression
-    (37) selection_stmt -> . IF LPAREN expression RPAREN LBRACE expression RBRACE ELSE LBRACE expression RBRACE statement
-    (38) selection_stmt -> . IF LPAREN expression RPAREN LBRACE expression RBRACE statement
-    (39) selection_stmt -> . IF LPAREN expression RPAREN LBRACE print_stmt RBRACE
-    (40) selection_stmt -> . IF LPAREN expression RPAREN LBRACE print_stmt RBRACE ELSE LBRACE print_stmt RBRACE
-    (41) iteration_stmt -> . FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement
-    (42) iteration_stmt -> . FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE print_stmt RBRACE
-    (43) iteration_stmt -> . WHILE LPAREN expression RPAREN LBRACE expression RBRACE statement
-    (44) iteration_stmt -> . WHILE LPAREN expression RPAREN LBRACE print_stmt RBRACE
-    (45) iteration_stmt -> . DO LBRACE statement SEMI RBRACE WHILE LPAREN expression RPAREN SEMI
-    (46) iteration_stmt -> . DO LBRACE print_stmt RBRACE WHILE LPAREN expression RPAREN SEMI
-    (10) print_stmt -> . PRINT LPAREN STRING RPAREN SEMI declaration
-    (11) print_stmt -> . PRINT LPAREN STRING RPAREN SEMI
-    (12) print_stmt -> . PRINT LPAREN IDENTIFIER RPAREN SEMI declaration
-    (13) print_stmt -> . PRINT LPAREN IDENTIFIER RPAREN SEMI
-    (14) print_stmt -> . PRINT LPAREN NUMBER RPAREN SEMI declaration
-    (15) print_stmt -> . PRINT LPAREN NUMBER RPAREN SEMI
-    (16) print_stmt -> . PRINT LPAREN boolean RPAREN SEMI declaration
-    (17) print_stmt -> . PRINT LPAREN boolean RPAREN SEMI
-    (18) print_stmt -> . PRINT LPAREN expression RPAREN SEMI declaration
-    (19) print_stmt -> . PRINT LPAREN expression RPAREN SEMI
-    (20) print_stmt -> . PRINT LPAREN RPAREN SEMI declaration
-    (21) print_stmt -> . PRINT LPAREN RPAREN SEMI
-    (47) read_stmt -> . READ LPAREN STRING RPAREN SEMI declaration
-    (48) read_stmt -> . READ LPAREN STRING RPAREN SEMI
-    (49) read_stmt -> . IDENTIFIER READ LPAREN STRING RPAREN SEMI
-    (50) read_stmt -> . IDENTIFIER READ LPAREN RPAREN SEMI
-    (51) expression -> . IDENTIFIER EQUALITY expression
-    (52) expression -> . simple_expression
-    (53) expression -> . IDENTIFIER EQUALITY IDENTIFIER
-    (54) expression -> . expression LOG expression
-    (55) expression -> . expression OU_LOGICO expression
-    (86) expression -> . expression PLUS term
-    (87) expression -> . expression MINUS term
-    (88) expression -> . expression TIMES term
-    (89) expression -> . expression DIVIDE term
-    (90) expression -> . expression TIMESX term
-    (91) expression -> . expression LOG term
-    (92) expression -> . expression OU_LOGICO term
-    (56) simple_expression -> . additive_expression relop additive_expression
-    (57) simple_expression -> . additive_expression
-    (64) additive_expression -> . additive_expression addop term
-    (65) additive_expression -> . term
-    (66) additive_expression -> . term MINUSMINUS
-    (67) additive_expression -> . term PLUSPLUS
-    (70) term -> . term mulop factor
-    (71) term -> . factor
-    (74) factor -> . LPAREN expression RPAREN
-    (75) factor -> . IDENTIFIER
-    (76) factor -> . NUMBER
-    (77) factor -> . boolean
-    (78) factor -> . IDENTIFIER LPAREN args RPAREN
-    (81) NUMBER -> . INTEGER
-    (82) NUMBER -> . FLOAT
-    (79) boolean -> . TRUE
-    (80) boolean -> . FALSE
+    (42) iteration_stmt -> FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE statement . RBRACE
 
-    IF              shift and go to state 17
-    FOR             shift and go to state 18
-    WHILE           shift and go to state 20
-    DO              shift and go to state 21
-    PRINT           shift and go to state 14
-    READ            shift and go to state 16
-    IDENTIFIER      shift and go to state 106
-    LPAREN          shift and go to state 15
-    INTEGER         shift and go to state 24
-    FLOAT           shift and go to state 25
-    TRUE            shift and go to state 26
-    FALSE           shift and go to state 27
+    RBRACE          shift and go to state 187
 
-    expression                     shift and go to state 100
-    additive_expression            shift and go to state 19
-    statement                      shift and go to state 186
-    expression_stmt                shift and go to state 102
-    selection_stmt                 shift and go to state 103
-    iteration_stmt                 shift and go to state 104
-    print_stmt                     shift and go to state 167
-    read_stmt                      shift and go to state 105
-    NUMBER                         shift and go to state 11
-    boolean                        shift and go to state 12
-    simple_expression              shift and go to state 13
-    term                           shift and go to state 22
-    factor                         shift and go to state 23
 
 state 182
 
-    (42) iteration_stmt -> FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE print_stmt RBRACE .
+    (51) expression -> IDENTIFIER . EQUALITY expression
+    (53) expression -> IDENTIFIER . EQUALITY IDENTIFIER
+    (49) read_stmt -> IDENTIFIER . READ LPAREN STRING RPAREN SEMI
+    (50) read_stmt -> IDENTIFIER . READ LPAREN RPAREN SEMI
+    (75) factor -> IDENTIFIER .
+    (78) factor -> IDENTIFIER . LPAREN args RPAREN
 
-    IDENTIFIER      reduce using rule 42 (iteration_stmt -> FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE print_stmt RBRACE .)
-    PRINT           reduce using rule 42 (iteration_stmt -> FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE print_stmt RBRACE .)
-    READ            reduce using rule 42 (iteration_stmt -> FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE print_stmt RBRACE .)
-    IF              reduce using rule 42 (iteration_stmt -> FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE print_stmt RBRACE .)
-    FOR             reduce using rule 42 (iteration_stmt -> FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE print_stmt RBRACE .)
-    WHILE           reduce using rule 42 (iteration_stmt -> FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE print_stmt RBRACE .)
-    DO              reduce using rule 42 (iteration_stmt -> FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE print_stmt RBRACE .)
-    LPAREN          reduce using rule 42 (iteration_stmt -> FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE print_stmt RBRACE .)
-    INTEGER         reduce using rule 42 (iteration_stmt -> FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE print_stmt RBRACE .)
-    FLOAT           reduce using rule 42 (iteration_stmt -> FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE print_stmt RBRACE .)
-    TRUE            reduce using rule 42 (iteration_stmt -> FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE print_stmt RBRACE .)
-    FALSE           reduce using rule 42 (iteration_stmt -> FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE print_stmt RBRACE .)
-    $end            reduce using rule 42 (iteration_stmt -> FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE print_stmt RBRACE .)
-    SEMI            reduce using rule 42 (iteration_stmt -> FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE print_stmt RBRACE .)
-    RBRACE          reduce using rule 42 (iteration_stmt -> FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE print_stmt RBRACE .)
+  ! shift/reduce conflict for EQUALITY resolved as shift
+    EQUALITY        shift and go to state 41
+    READ            shift and go to state 39
+    MINUSMINUS      reduce using rule 75 (factor -> IDENTIFIER .)
+    PLUSPLUS        reduce using rule 75 (factor -> IDENTIFIER .)
+    TIMES           reduce using rule 75 (factor -> IDENTIFIER .)
+    DIVIDE          reduce using rule 75 (factor -> IDENTIFIER .)
+    MENOR           reduce using rule 75 (factor -> IDENTIFIER .)
+    MENOREQUALS     reduce using rule 75 (factor -> IDENTIFIER .)
+    MAIOR           reduce using rule 75 (factor -> IDENTIFIER .)
+    MAIOREQUALS     reduce using rule 75 (factor -> IDENTIFIER .)
+    DIFERENTE       reduce using rule 75 (factor -> IDENTIFIER .)
+    PLUS            reduce using rule 75 (factor -> IDENTIFIER .)
+    MINUS           reduce using rule 75 (factor -> IDENTIFIER .)
+    RBRACE          reduce using rule 75 (factor -> IDENTIFIER .)
+    LOG             reduce using rule 75 (factor -> IDENTIFIER .)
+    OU_LOGICO       reduce using rule 75 (factor -> IDENTIFIER .)
+    TIMESX          reduce using rule 75 (factor -> IDENTIFIER .)
+    LPAREN          shift and go to state 40
+
+  ! EQUALITY        [ reduce using rule 75 (factor -> IDENTIFIER .) ]
 
 
 state 183
@@ -6126,8 +6087,8 @@ state 184
     (38) selection_stmt -> . IF LPAREN expression RPAREN LBRACE expression RBRACE statement
     (39) selection_stmt -> . IF LPAREN expression RPAREN LBRACE print_stmt RBRACE
     (40) selection_stmt -> . IF LPAREN expression RPAREN LBRACE print_stmt RBRACE ELSE LBRACE print_stmt RBRACE
-    (41) iteration_stmt -> . FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement
-    (42) iteration_stmt -> . FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE print_stmt RBRACE
+    (41) iteration_stmt -> . FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement
+    (42) iteration_stmt -> . FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE statement RBRACE
     (43) iteration_stmt -> . WHILE LPAREN expression RPAREN LBRACE expression RBRACE statement
     (44) iteration_stmt -> . WHILE LPAREN expression RPAREN LBRACE print_stmt RBRACE
     (45) iteration_stmt -> . DO LBRACE statement SEMI RBRACE WHILE LPAREN expression RPAREN SEMI
@@ -6192,7 +6153,7 @@ state 184
     FALSE           shift and go to state 27
 
     expression                     shift and go to state 100
-    statement                      shift and go to state 187
+    statement                      shift and go to state 188
     expression_stmt                shift and go to state 102
     selection_stmt                 shift and go to state 103
     iteration_stmt                 shift and go to state 104
@@ -6228,26 +6189,118 @@ state 185
 
 state 186
 
-    (41) iteration_stmt -> FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement .
+    (41) iteration_stmt -> FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE expression RBRACE . statement
+    (31) statement -> . expression_stmt
+    (32) statement -> . selection_stmt
+    (33) statement -> . iteration_stmt
+    (34) statement -> . print_stmt
+    (35) statement -> . read_stmt
+    (36) expression_stmt -> . expression
+    (37) selection_stmt -> . IF LPAREN expression RPAREN LBRACE expression RBRACE ELSE LBRACE expression RBRACE statement
+    (38) selection_stmt -> . IF LPAREN expression RPAREN LBRACE expression RBRACE statement
+    (39) selection_stmt -> . IF LPAREN expression RPAREN LBRACE print_stmt RBRACE
+    (40) selection_stmt -> . IF LPAREN expression RPAREN LBRACE print_stmt RBRACE ELSE LBRACE print_stmt RBRACE
+    (41) iteration_stmt -> . FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement
+    (42) iteration_stmt -> . FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE statement RBRACE
+    (43) iteration_stmt -> . WHILE LPAREN expression RPAREN LBRACE expression RBRACE statement
+    (44) iteration_stmt -> . WHILE LPAREN expression RPAREN LBRACE print_stmt RBRACE
+    (45) iteration_stmt -> . DO LBRACE statement SEMI RBRACE WHILE LPAREN expression RPAREN SEMI
+    (46) iteration_stmt -> . DO LBRACE print_stmt RBRACE WHILE LPAREN expression RPAREN SEMI
+    (10) print_stmt -> . PRINT LPAREN STRING RPAREN SEMI declaration
+    (11) print_stmt -> . PRINT LPAREN STRING RPAREN SEMI
+    (12) print_stmt -> . PRINT LPAREN IDENTIFIER RPAREN SEMI declaration
+    (13) print_stmt -> . PRINT LPAREN IDENTIFIER RPAREN SEMI
+    (14) print_stmt -> . PRINT LPAREN NUMBER RPAREN SEMI declaration
+    (15) print_stmt -> . PRINT LPAREN NUMBER RPAREN SEMI
+    (16) print_stmt -> . PRINT LPAREN boolean RPAREN SEMI declaration
+    (17) print_stmt -> . PRINT LPAREN boolean RPAREN SEMI
+    (18) print_stmt -> . PRINT LPAREN expression RPAREN SEMI declaration
+    (19) print_stmt -> . PRINT LPAREN expression RPAREN SEMI
+    (20) print_stmt -> . PRINT LPAREN RPAREN SEMI declaration
+    (21) print_stmt -> . PRINT LPAREN RPAREN SEMI
+    (47) read_stmt -> . READ LPAREN STRING RPAREN SEMI declaration
+    (48) read_stmt -> . READ LPAREN STRING RPAREN SEMI
+    (49) read_stmt -> . IDENTIFIER READ LPAREN STRING RPAREN SEMI
+    (50) read_stmt -> . IDENTIFIER READ LPAREN RPAREN SEMI
+    (51) expression -> . IDENTIFIER EQUALITY expression
+    (52) expression -> . simple_expression
+    (53) expression -> . IDENTIFIER EQUALITY IDENTIFIER
+    (54) expression -> . expression LOG expression
+    (55) expression -> . expression OU_LOGICO expression
+    (86) expression -> . expression PLUS term
+    (87) expression -> . expression MINUS term
+    (88) expression -> . expression TIMES term
+    (89) expression -> . expression DIVIDE term
+    (90) expression -> . expression TIMESX term
+    (91) expression -> . expression LOG term
+    (92) expression -> . expression OU_LOGICO term
+    (56) simple_expression -> . additive_expression relop additive_expression
+    (57) simple_expression -> . additive_expression
+    (64) additive_expression -> . additive_expression addop term
+    (65) additive_expression -> . term
+    (66) additive_expression -> . term MINUSMINUS
+    (67) additive_expression -> . term PLUSPLUS
+    (70) term -> . term mulop factor
+    (71) term -> . factor
+    (74) factor -> . LPAREN expression RPAREN
+    (75) factor -> . IDENTIFIER
+    (76) factor -> . NUMBER
+    (77) factor -> . boolean
+    (78) factor -> . IDENTIFIER LPAREN args RPAREN
+    (81) NUMBER -> . INTEGER
+    (82) NUMBER -> . FLOAT
+    (79) boolean -> . TRUE
+    (80) boolean -> . FALSE
 
-    IDENTIFIER      reduce using rule 41 (iteration_stmt -> FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement .)
-    PRINT           reduce using rule 41 (iteration_stmt -> FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement .)
-    READ            reduce using rule 41 (iteration_stmt -> FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement .)
-    IF              reduce using rule 41 (iteration_stmt -> FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement .)
-    FOR             reduce using rule 41 (iteration_stmt -> FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement .)
-    WHILE           reduce using rule 41 (iteration_stmt -> FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement .)
-    DO              reduce using rule 41 (iteration_stmt -> FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement .)
-    LPAREN          reduce using rule 41 (iteration_stmt -> FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement .)
-    INTEGER         reduce using rule 41 (iteration_stmt -> FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement .)
-    FLOAT           reduce using rule 41 (iteration_stmt -> FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement .)
-    TRUE            reduce using rule 41 (iteration_stmt -> FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement .)
-    FALSE           reduce using rule 41 (iteration_stmt -> FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement .)
-    $end            reduce using rule 41 (iteration_stmt -> FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement .)
-    SEMI            reduce using rule 41 (iteration_stmt -> FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement .)
-    RBRACE          reduce using rule 41 (iteration_stmt -> FOR LPAREN var_declaration expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement .)
+    IF              shift and go to state 17
+    FOR             shift and go to state 18
+    WHILE           shift and go to state 20
+    DO              shift and go to state 21
+    PRINT           shift and go to state 14
+    READ            shift and go to state 16
+    IDENTIFIER      shift and go to state 106
+    LPAREN          shift and go to state 15
+    INTEGER         shift and go to state 24
+    FLOAT           shift and go to state 25
+    TRUE            shift and go to state 26
+    FALSE           shift and go to state 27
 
+    expression                     shift and go to state 100
+    additive_expression            shift and go to state 19
+    statement                      shift and go to state 189
+    expression_stmt                shift and go to state 102
+    selection_stmt                 shift and go to state 103
+    iteration_stmt                 shift and go to state 104
+    print_stmt                     shift and go to state 167
+    read_stmt                      shift and go to state 105
+    NUMBER                         shift and go to state 11
+    boolean                        shift and go to state 12
+    simple_expression              shift and go to state 13
+    term                           shift and go to state 22
+    factor                         shift and go to state 23
 
 state 187
+
+    (42) iteration_stmt -> FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE statement RBRACE .
+
+    IDENTIFIER      reduce using rule 42 (iteration_stmt -> FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE statement RBRACE .)
+    PRINT           reduce using rule 42 (iteration_stmt -> FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE statement RBRACE .)
+    READ            reduce using rule 42 (iteration_stmt -> FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE statement RBRACE .)
+    IF              reduce using rule 42 (iteration_stmt -> FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE statement RBRACE .)
+    FOR             reduce using rule 42 (iteration_stmt -> FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE statement RBRACE .)
+    WHILE           reduce using rule 42 (iteration_stmt -> FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE statement RBRACE .)
+    DO              reduce using rule 42 (iteration_stmt -> FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE statement RBRACE .)
+    LPAREN          reduce using rule 42 (iteration_stmt -> FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE statement RBRACE .)
+    INTEGER         reduce using rule 42 (iteration_stmt -> FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE statement RBRACE .)
+    FLOAT           reduce using rule 42 (iteration_stmt -> FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE statement RBRACE .)
+    TRUE            reduce using rule 42 (iteration_stmt -> FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE statement RBRACE .)
+    FALSE           reduce using rule 42 (iteration_stmt -> FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE statement RBRACE .)
+    $end            reduce using rule 42 (iteration_stmt -> FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE statement RBRACE .)
+    SEMI            reduce using rule 42 (iteration_stmt -> FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE statement RBRACE .)
+    RBRACE          reduce using rule 42 (iteration_stmt -> FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE statement RBRACE .)
+
+
+state 188
 
     (37) selection_stmt -> IF LPAREN expression RPAREN LBRACE expression RBRACE ELSE LBRACE expression RBRACE statement .
 
@@ -6266,6 +6319,27 @@ state 187
     $end            reduce using rule 37 (selection_stmt -> IF LPAREN expression RPAREN LBRACE expression RBRACE ELSE LBRACE expression RBRACE statement .)
     SEMI            reduce using rule 37 (selection_stmt -> IF LPAREN expression RPAREN LBRACE expression RBRACE ELSE LBRACE expression RBRACE statement .)
     RBRACE          reduce using rule 37 (selection_stmt -> IF LPAREN expression RPAREN LBRACE expression RBRACE ELSE LBRACE expression RBRACE statement .)
+
+
+state 189
+
+    (41) iteration_stmt -> FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement .
+
+    IDENTIFIER      reduce using rule 41 (iteration_stmt -> FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement .)
+    PRINT           reduce using rule 41 (iteration_stmt -> FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement .)
+    READ            reduce using rule 41 (iteration_stmt -> FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement .)
+    IF              reduce using rule 41 (iteration_stmt -> FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement .)
+    FOR             reduce using rule 41 (iteration_stmt -> FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement .)
+    WHILE           reduce using rule 41 (iteration_stmt -> FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement .)
+    DO              reduce using rule 41 (iteration_stmt -> FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement .)
+    LPAREN          reduce using rule 41 (iteration_stmt -> FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement .)
+    INTEGER         reduce using rule 41 (iteration_stmt -> FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement .)
+    FLOAT           reduce using rule 41 (iteration_stmt -> FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement .)
+    TRUE            reduce using rule 41 (iteration_stmt -> FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement .)
+    FALSE           reduce using rule 41 (iteration_stmt -> FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement .)
+    $end            reduce using rule 41 (iteration_stmt -> FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement .)
+    SEMI            reduce using rule 41 (iteration_stmt -> FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement .)
+    RBRACE          reduce using rule 41 (iteration_stmt -> FOR LPAREN var_declaration SEMI expression SEMI additive_expression RPAREN LBRACE expression RBRACE statement .)
 
 WARNING: 
 WARNING: Conflicts:
@@ -6389,6 +6463,8 @@ WARNING: shift/reduce conflict for INTEGER in state 138 resolved as shift
 WARNING: shift/reduce conflict for FLOAT in state 138 resolved as shift
 WARNING: shift/reduce conflict for TRUE in state 138 resolved as shift
 WARNING: shift/reduce conflict for FALSE in state 138 resolved as shift
+WARNING: shift/reduce conflict for RBRACE in state 180 resolved as shift
+WARNING: shift/reduce conflict for EQUALITY in state 182 resolved as shift
 WARNING: reduce/reduce conflict in state 10 resolved using rule (var_declaration -> IDENTIFIER)
 WARNING: rejected rule (factor -> IDENTIFIER) in state 10
 WARNING: reduce/reduce conflict in state 66 resolved using rule (additive_expression -> term)

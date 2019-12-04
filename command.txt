@@ -1,10 +1,10 @@
-if(x == 5){
+if(x == 5.2020){
     print("Oi");
 }else{
     print("Olá");
 }
 
-for(x=0;x++;x++){
+for(x=0;x < 5;x++){
     print("Printando infinitamente");
     print("dgoijdfpog");
     print("dgoijdfpog");
