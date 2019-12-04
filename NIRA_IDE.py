@@ -132,7 +132,7 @@ class Notepad:
                 linhao += 1
             content = file.readlines()
         
-        x = Main.main(y)
+        x = Main.main(y) 
 
         content2 = str(x).replace(",","\n").replace("[","").replace("]","").replace("'","").replace('"',"").replace("\\","/")
     

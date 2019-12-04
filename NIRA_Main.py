@@ -28,17 +28,18 @@ def main(script):
         
     
 
-        print("Iniciando a análise sintática")
-        parserS.parser.parse(scriptdata, tracking=False)
-        print("Terminando a análise sintática")
+        lextatico.append("Iniciando a análise sintática")
+        lextatico.append(parserS.parser.parse(scriptdata, tracking=False))
+        lextatico.append("Terminando a análise sintática")
     
-        #return lextatico
+        return lextatico
 
     except EnvironmentError as e:
         print(e)
 
 
 if __name__ == '__main__':
+    ide.doidao1();
     if (len(sys.argv) > 1):
         script = sys.argv[1]
     print(main(script))

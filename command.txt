@@ -1,27 +1,44 @@
-if(x == 5.2020){
+
+print("Olá");
+
+if(x == 5){
     print("Oi");
+    print("Oi");
+    print("Oi");
+    read("Digite algo");
+    x = read("Digite algo");
 }else{
     print("Olá");
+    print("Oi");
+    print("Oi");
+    print("Oi");
+    print("Oi");
+    print("Oi");
+    read("KLSDFNJGODFG");
 }
 
-for(x=0;x < 5;x++){
+for(x=0;x > 50;x++){
     print("Printando infinitamente");
     print("dgoijdfpog");
     print("dgoijdfpog");
     print("dgoijdfpog");
-    print("dgoijdfpog");
-    print("dgoijdfpog");
-    print("dgoijdfpog");read("");
-    print("dgoijdfpog");
-    print("dgoijdfpog");
-    print("dgoijdfpog");print("dgoijdfpog");
-    print("dgoijdfpog");
-    print("dgoijdfpog");
+    read("siopghiodfhgfiog");
 }
 
 do{
     print("SDIOJFOIDSJFPOD");
-}while(x > 10);
+    print("Oi");
+    print("Oi");
+    print("Oi");
+    print("Oi");
+    print("Oi");
+    print("Oi");
+    read("DSIOHGOIDFJGD");
+}while(x == 10);
 
 
+while(x == 100){
+    print("AAAAAAAAAAA");
+    read("dfds");
+}
 #ioafposdfgpo
