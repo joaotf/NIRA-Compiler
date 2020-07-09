@@ -98,6 +98,10 @@ def t_COMMENT(t):
 
 t_ignore  = ' \t'
 
+def t_error(t):
+    print(f"Illegal chacacter {t.value[0]} at line {t.lineno}")
+    t.lexer.skip(1)
+
 
 def build(**kwargs):
     lexer = lex.lex(**kwargs)

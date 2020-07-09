@@ -21,25 +21,32 @@ def main(script):
             tok = lex.token()
             if not tok:
                 break
-            lextatico.append(str(i)+" - "+"Line: "+str(tok.lineno)+"   "+str(tok.type)+"  --->  "+str(tok.value))
+            lextatico.append("\t"+str(i)+" - "+"Line: "+str(tok.lineno)+"   "+str(tok.type)+"  --->  "+str(tok.value))
             i += 1
 
-        lextatico.append("Terminando análise léxica                             ")
-        
-    
+        lextatico.append("Terminando análise léxica\n")
 
-        lextatico.append("Iniciando a análise sintática")
-        lextatico.append(parserS.parser.parse(scriptdata, tracking=False))
+        lextatico.append("\nIniciando a análise sintática")
+        parserS.y.parse(scriptdata, tracking=False)
+        if(len(parserS.errors) == 0):
+            lextatico.append("\tNão há erros sintáticos no código!");            
+        else:
+            lextatico.append(parserS.errors);
         lextatico.append("Terminando a análise sintática")
-    
-        return lextatico
 
+        with open("result.txt","w+") as file:
+            for x in range(len(lextatico)):
+                file.writelines(lextatico[x]);
+                file.writelines("\n");
+                
+        file.close()
+        
     except EnvironmentError as e:
         print(e)
 
 
 if __name__ == '__main__':
-    ide.doidao1();
+    #ide.doidao1();
     if (len(sys.argv) > 1):
         script = sys.argv[1]
     print(main(script))

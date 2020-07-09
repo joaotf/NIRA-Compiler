@@ -4,6 +4,8 @@ from NIRA_Lexer import tokens
 import sys
 import os
 
+errors = []
+
 precedence = (
     ('left','LPAREN','RPAREN'),
     ('left','LOG','OU_LOGICO'),
@@ -230,17 +232,15 @@ def p_empty(p):
     pass
 
 def p_error(p):
+	
 	if 1:
 		if p is not None:
-		    print("ERROR: Syntax error - Unexpected token")
-		    print("Line: "+str(p.lexer.lineno)+"\t ==> "+str(p.value))
+		    errors.append("\nERROR: Syntax error - Unexpected token\n")
+		    errors.append("\nLine: "+str(p.lexer.lineno)+"\t ==> "+str(p.value)+"\n")
 		else:
-			print("ERROR: Syntax error")
-			print("Line: "+str(lexer.lexer.lineno))
+			errors.append("\nERROR: Syntax error\n")
+			errors.append("Line: "+str(lexer.lexer.lineno)+"\n")
 	else:
 		raise Exception('syntax','error')
 
-
-
-
-parser = yacc.yacc(start='program')
+y = yacc.yacc(start='program', outputdir="result.txt")
